@@ -11,8 +11,6 @@ import styles from './styles';
 
 class Hot extends Component {
   static navigationOptions = {
-    title: 'hot',
-    tabBarLabel: 'hot',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../images/notification-icon.png')}

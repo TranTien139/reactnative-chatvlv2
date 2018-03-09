@@ -11,8 +11,6 @@ import styles from './styles';
 
 class Video extends Component {
   static navigationOptions = {
-    title: 'Video',
-    tabBarLabel: 'Video',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../images/notification-icon.png')}

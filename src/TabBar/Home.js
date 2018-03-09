@@ -11,8 +11,6 @@ import styles from './styles';
 
 class Home extends Component {
   static navigationOptions = {
-    title: 'home',
-    tabBarLabel: 'home',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../images/notification-icon.png')}

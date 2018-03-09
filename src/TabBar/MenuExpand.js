@@ -11,8 +11,6 @@ import styles from './styles';
 
 class MenuExpand extends Component {
   static navigationOptions = {
-    title: 'MenuExpand',
-    tabBarLabel: 'MenuExpand',
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('../images/notification-icon.png')}
