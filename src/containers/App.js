@@ -23,48 +23,28 @@ const styles = StyleSheet.create({
 	icon: {
 		width: 20,
 		height: 20,
-		backgroundColor: "transparent"
+    backgroundColor: "transparent"
 	},
 	tabBar: {
-		backgroundColor: "#333333",
+		backgroundColor: "#999999",
 	}
 });
 
-const App = TabNavigator({
+export const Tabs = TabNavigator({
   Home: {
-    screen: Home,
-    navigationOptions: ({ navigation }) => ({
-      title: "Home",
-      icon: ({ tintColor }) => <FontAwesome>{Icons.newspaper}</FontAwesome>
-    })
+    screen: Home
   },
   Hot: {
-    screen: Hot,
-    navigationOptions: ({ navigation }) => ({
-      title: "Hot",
-      icon: ({ tintColor }) => <FontAwesome>{Icons.burn}</FontAwesome>
-    })
+    screen: Hot
   },
   Images: {
-    screen: Images,
-    navigationOptions: ({ navigation }) => ({
-      title: "Images",
-      icon: ({ tintColor }) => <FontAwesome>{Icons.image}</FontAwesome>
-    })
+    screen: Images
   },
   Video: {
-    screen: Video,
-    navigationOptions: ({ navigation }) => ({
-        title: "Video",
-				icon: ({ tintColor }) => <FontAwesome>{Icons.youtube}</FontAwesome>
-    })
+    screen: Video
   },
   MenuExpand: {
-    screen: MenuExpand,
-    navigationOptions: ({ navigation }) => ({
-      title: "MenuExpand",
-      icon: ({ tintColor }) => <FontAwesome>{Icons.alignJustify}</FontAwesome>
-    })
+    screen: MenuExpand
   }
 },{
   initialRouteName: "Home",
@@ -87,4 +67,11 @@ const App = TabNavigator({
   }
 });
 
-export default App;
+export const Root = StackNavigator({
+  Tabs: {
+    screen: Tabs,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+});

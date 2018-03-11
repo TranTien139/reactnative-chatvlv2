@@ -9,11 +9,11 @@ import {
 
 import styles from './styles';
 
-class Images extends Component {
+class Video extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../images/notification-icon.png')}
+        source={require('../images/video.png')}
         style={[styles.icon, { tintColor: tintColor }]}
       />
     )
@@ -22,10 +22,10 @@ class Images extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <Text style={styles.welcome}>Image</Text>
+          <Text style={styles.welcome}>Video</Text>
       </View>
     );
   }
 }
 
-export default Images;
+export default Video;

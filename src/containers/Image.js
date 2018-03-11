@@ -9,11 +9,11 @@ import {
 
 import styles from './styles';
 
-class Hot extends Component {
+class Images extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../images/notification-icon.png')}
+        source={require('../images/image.png')}
         style={[styles.icon, { tintColor: tintColor }]}
       />
     )
@@ -22,10 +22,10 @@ class Hot extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <Text style={styles.welcome}>hot</Text>
+          <Text style={styles.welcome}>Image</Text>
       </View>
     );
   }
 }
 
-export default Hot;
+export default Images;

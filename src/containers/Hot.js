@@ -9,11 +9,11 @@ import {
 
 import styles from './styles';
 
-class MenuExpand extends Component {
+class Hot extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image
-        source={require('../images/notification-icon.png')}
+        source={require('../images/hot.png')}
         style={[styles.icon, { tintColor: tintColor }]}
       />
     )
@@ -22,10 +22,10 @@ class MenuExpand extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-          <Text style={styles.welcome}>MenuExpand</Text>
+          <Text style={styles.welcome}>hot</Text>
       </View>
     );
   }
 }
 
-export default MenuExpand;
+export default Hot;
