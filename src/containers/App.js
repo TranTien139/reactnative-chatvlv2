@@ -8,6 +8,7 @@ import Hot from './Hot';
 import Images from './Image';
 import Video from './Video';
 import MenuExpand from './MenuExpand';
+import Detail from './Detail';
 
 const styles = StyleSheet.create({
 	tab: {
@@ -71,6 +72,9 @@ export const Root = StackNavigator({
   Tabs: {
     screen: Tabs,
   },
+  Detail: {
+    screen: Detail
+  }
 }, {
   mode: 'modal',
   headerMode: 'none',

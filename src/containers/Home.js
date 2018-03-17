@@ -7,14 +7,16 @@ import {
   Image,
   Button,
   ScrollView,
-  YellowBox
+  YellowBox,
+  TouchableOpacity
 } from 'react-native';
 
-import styles from './styles';
+// import styles from './styles';
 import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 import * as actions from '../actions/getArticle';
+import {NiceTime} from './../functions/common';
 
 class Home extends Component {
   constructor(props){
@@ -28,6 +30,7 @@ class Home extends Component {
       'Warning: componentWillReceiveProps is deprecated',
       'Warning: componentWillUpdate is deprecated',
     ]);
+    this.showDetail = this.showDetail.bind(this)
 }
 
   static navigationOptions = {
@@ -43,6 +46,10 @@ class Home extends Component {
     this.props.getArticleNew(1);
   }
 
+  showDetail = (object)=>{
+    this.props.navigation.navigate('Detail', {...object});
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     let list_article = this.props.article.article;
@@ -50,7 +57,15 @@ class Home extends Component {
       <ScrollView>
   
         { list_article.map((object)=>{
-                                return <Text key={Math.random()} >{object.title}</Text>
+                                return (
+                                  <TouchableOpacity key={Math.random()} onPress={this.showDetail.bind(this, object)}>
+                                  <View style={{ flex: 1 }} >
+                                <Text style={styles.title} >{object.title}</Text>
+                                <Text style={{ marginBottom:10 }} >Đăng bởi: {object.getUser.name}, {NiceTime(object.published_at)}, {object.total_like}' Thích' ,{object.total_comment}' Bình luận' </Text>
+                                <Image style={{flex: 1, height: 250}}  source={{uri: object.image}} />
+                              </View>
+                              </TouchableOpacity>
+                              )
                             })
                             }
 
@@ -58,6 +73,13 @@ class Home extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  title:{
+    paddingTop: 20,
+    paddingBottom: 10
+  }
+});
 
 const mapStateToProps = state => ({
   article: state.article,
