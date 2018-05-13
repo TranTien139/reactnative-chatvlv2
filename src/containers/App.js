@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabNavigator,StackNavigator} from 'react-navigation';
-import FontAwesome, { Icons } from "react-native-fontawesome";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { Icon  } from 'react-native-elements'
 
 import Home from './Home';
 import Hot from './Hot';
@@ -23,29 +23,48 @@ const styles = StyleSheet.create({
 	},
 	icon: {
 		width: 20,
-		height: 20,
-    backgroundColor: "transparent"
+		height: 20
 	},
 	tabBar: {
-		backgroundColor: "#999999",
+		backgroundColor: "#0643a5",
 	}
 });
 
 export const Tabs = TabNavigator({
   Home: {
-    screen: Home
+    screen: Home,
+    navigationOptions: {
+      tabBarLabel: 'Trang chủ',
+      tabBarIcon:() => <Icon name='home'  color='#fff' />
+    }
   },
   Hot: {
-    screen: Hot
+    screen: Hot,
+    navigationOptions: {
+      tabBarLabel: 'Bài hot',
+      tabBarIcon:() => <Icon name='launch'  color='#fff' />
+    }
   },
   Images: {
-    screen: Images
+    screen: Images,
+    navigationOptions: {
+      tabBarLabel: 'Bài ảnh',
+      tabBarIcon:() => <Icon name='image'  color='#fff' />
+    }
   },
   Video: {
-    screen: Video
+    screen: Video,
+    navigationOptions: {
+      tabBarLabel: 'Bài video',
+      tabBarIcon:() => <Icon name='tab'  color='#fff' />
+    }
   },
   MenuExpand: {
-    screen: MenuExpand
+    screen: MenuExpand,
+    navigationOptions: {
+      tabBarLabel: 'Mở rộng',
+      tabBarIcon:() => <Icon name='menu'  color='#fff' />
+    }
   }
 },{
   initialRouteName: "Home",
@@ -79,3 +98,4 @@ export const Root = StackNavigator({
   mode: 'modal',
   headerMode: 'none',
 });
+

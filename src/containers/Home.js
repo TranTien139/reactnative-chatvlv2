@@ -5,18 +5,19 @@ import {
   TouchableHighlight,
   View,
   Image,
-  Button,
   ScrollView,
   YellowBox,
   TouchableOpacity
 } from 'react-native';
 
-// import styles from './styles';
+import { Button,Header,SocialIcon  } from 'react-native-elements'
+
 import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 import * as actions from '../actions/getArticle';
 import {NiceTime} from './../functions/common';
+
 
 class Home extends Component {
   constructor(props){
@@ -33,15 +34,6 @@ class Home extends Component {
     this.showDetail = this.showDetail.bind(this)
 }
 
-  static navigationOptions = {
-    tabBarIcon: ({ tintColor }) => (
-      <Image
-        source={require('../images/home.png')}
-        style={[styles.icon, { tintColor: tintColor }]}
-      />
-    )
-  }
-
   componentDidMount(){
     this.props.getArticleNew(1);
   }
@@ -54,8 +46,8 @@ class Home extends Component {
     const { navigate } = this.props.navigation;
     let list_article = this.props.article.article;
     return (
+      <View>
       <ScrollView>
-  
         { list_article.map((object)=>{
                                 return (
                                   <TouchableOpacity key={Math.random()} onPress={this.showDetail.bind(this, object)}>
@@ -70,6 +62,7 @@ class Home extends Component {
                             }
 
       </ScrollView>
+      </View>
     );
   }
 }
