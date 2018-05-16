@@ -9,6 +9,8 @@ import Images from './Image';
 import Video from './Video';
 import MenuExpand from './MenuExpand';
 import Detail from './Detail';
+import Search from './Search';
+import Login from './Login';
 
 const styles = StyleSheet.create({
 	tab: {
@@ -93,6 +95,12 @@ export const Root = StackNavigator({
   },
   Detail: {
     screen: Detail
+  },
+  Search: {
+    screen: Search
+  },
+  Login: {
+    screen: Login
   }
 }, {
   mode: 'modal',
