@@ -7,7 +7,9 @@ import {
   Image,
   ScrollView,
   YellowBox,
-  TouchableOpacity
+  TouchableOpacity,
+  ListView,
+  ActivityIndicator
 } from 'react-native';
 
 import { Button,Header,SocialIcon  } from 'react-native-elements'
@@ -18,6 +20,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions/getArticle';
 import {NiceTime} from './../functions/common';
 
+import styles from './styles';
 
 class Home extends Component {
   constructor(props){
@@ -35,7 +38,9 @@ class Home extends Component {
 }
 
   componentDidMount(){
-    this.props.getArticleNew(1);
+    if(!this.props.page.pageHome) {
+      this.props.getArticleNew(2);
+    }
   }
 
   showDetail = (object)=>{
@@ -45,38 +50,49 @@ class Home extends Component {
   render() {
     const { navigate } = this.props.navigation;
     let list_article = this.props.article.article;
+    let is_loading  = this.props.article.isloading
+    if(is_loading === true){
     return (
-      <View>
-      <ScrollView>
-        { list_article.map((object)=>{
+        <View style={stlesload.loading}>
+          <ActivityIndicator size="large" />
+        </View>
+    );
+    } else {
+      return(
+        <ScrollView>
+          { list_article.map((object)=>{
                                 return (
                                   <TouchableOpacity key={Math.random()} onPress={this.showDetail.bind(this, object)}>
-                                  <View style={{ flex: 1 }} >
-                                <Text style={styles.title} >{object.title}</Text>
-                                <Text style={{ marginBottom:10 }} >Đăng bởi: {object.getUser.name}, {NiceTime(object.published_at)}, {object.total_like}' Thích' ,{object.total_comment}' Bình luận' </Text>
-                                <Image style={{flex: 1, height: 250}}  source={{uri: object.image}} />
-                              </View>
-                              </TouchableOpacity>
+                                    <View style={{ flex: 1 }} >
+                                      <View style={styles.boxListHome}>
+                                        <Text style={styles.titleHome}>{object.title}</Text>
+                                        <Text style={ [styles.marginBotom] } >Đăng bởi: {object.getUser.name}, {NiceTime(object.published_at)}, {object.total_like}' Thích', {object.total_comment}' Bình luận' </Text>
+                                      </View>
+                                      <Image style={styles.imageHome}  source={{uri: object.image}} />
+                                    </View>
+                                  </TouchableOpacity>
                               )
-                            })
-                            }
-
+            })
+          }
       </ScrollView>
-      </View>
     );
   }
-}
-
-const styles = StyleSheet.create({
-  title:{
-    paddingTop: 20,
-    paddingBottom: 10
   }
-});
+}
 
 const mapStateToProps = state => ({
   article: state.article,
   page: state.page
+});
+
+const stlesload = StyleSheet.create({
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 120,
+    backgroundColor: '#ecf0f1',
+  }
 });
 
 export default connect(mapStateToProps, actions)(Home);

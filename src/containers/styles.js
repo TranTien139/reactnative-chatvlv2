@@ -4,39 +4,26 @@ import {
 } from 'react-native';
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26,
+  boxListHome:{
+    backgroundColor: 'rgb(77, 124, 198)'
   },
-  container: {
-     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+  titleHome:{
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    color: '#fff',
+    fontSize: 20
   },
-  button: {
-    alignSelf: 'stretch',
-    marginLeft: 50,
-    marginRight: 50,
-    borderRadius: 5,
-    height: 40,
-    backgroundColor: '#7567B1',
-    justifyContent: 'center'
+  marginBotom:{
+    marginBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    color: '#fff'
   },
-  buttonText: {
-      color: 'white',
-      alignSelf: 'center',
-      fontSize: 16
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  imageHome: {
+    height: 270
+  }
 });
 
 export default styles;
