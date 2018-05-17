@@ -74,7 +74,7 @@ class Images extends Component {
         rowHasChanged: (r1, r2) => r1 !== r2,
       });
       const data = responseJson;
-      let page =  this.state.page;
+      let page =  this.state.page + 1;
       this.setState({
         dataSource: ds.cloneWithRows(data),
         isLoading: false,
@@ -115,6 +115,7 @@ class Images extends Component {
         }}
         onEndReached={() =>
           this.setState({ isLoadingMore: true }, () => this.fetchMore())}
+          onEndReachedThreshold={10}
         renderFooter={() => {
           return (
             this.state.isLoadingMore &&

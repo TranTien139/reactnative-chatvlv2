@@ -7,20 +7,22 @@ import {
   Image,
   ScrollView,
   WebView,
-  Platform
+  Platform,
+  Dimensions ,
+  ActivityIndicator
 } from 'react-native';
 
 
-import styles from './styles';
 import {Header} from 'react-native-elements';
 import {NavigationActions} from 'react-navigation';
+import {NiceTime} from './../functions/common';
 
 import YouTube, { YouTubeStandaloneAndroid } from 'react-native-youtube';
 
 class Detail extends Component {
   constructor(props){
     super(props);
-    this.state = {
+    this.state = {     
     }
   }
 
@@ -28,8 +30,20 @@ class Detail extends Component {
     this.props.navigation.dispatch(NavigationActions.back())
   }
 
+  ActivityIndicatorLoadingView() {
+    
+    return (
+
+      <ActivityIndicator
+        color='#009688'
+        size='large'
+        style={styles.ActivityIndicatorStyle}
+      />
+    );
+  }
+
   render() {
-    const { id, image, type, title, getUser, linkVideo } = this.props.navigation.state.params;
+    const { id, image, type, title, getUser, linkVideo,published_at, total_like, total_comment } = this.props.navigation.state.params;
     return (
       <View>
         <Header
@@ -39,33 +53,60 @@ class Detail extends Component {
       />
         <ScrollView>
           { linkVideo === '' ?  <View style={styles.container}>
-                <Image style={{flex: 1, height: 250}}  source={{uri: image}} />
+                <Image style={styles_image.image} resizeMode={'contain'}  source={{uri: image}} />
+            
               </View> :
-              <View style={styles.container}>
-              {/* <YouTube
-              ref={component => {
-                this._youTubeRef = component;
-              }}
-              apiKey="AIzaSyDHC6wv9f0_qFnoKnM6Bf8ElpuhXVRi674"
-              videoId="ncw4ISEU5ik"
-              play={this.state.isPlaying}
-              loop={this.state.isLooping}
-              fullscreen={this.state.fullscreen}
-              controls={1}
-              style={{ alignSelf: 'stretch', height: 300 }}
-              onError={e => this.setState({ error: e.error })}
-              onReady={e => this.setState({ isReady: true })}
-              onChangeState={e => this.setState({ status: e.state })}
-              onChangeQuality={e => this.setState({ quality: e.quality })}
-              onChangeFullscreen={e => this.setState({ fullscreen: e.isFullscreen })}
-              onProgress={e => this.setState({ duration: e.duration, currentTime: e.currentTime })}
-            ></YouTube> */}
+              <View>
+          <WebView 
+         style={styles.WebViewStyle} 
+         source={{uri: 'https://www.youtube.com/embed/PGUMRVowdv8'}} 
+         javaScriptEnabled={true}
+         domStorageEnabled={true}
+         renderLoading={this.ActivityIndicatorLoadingView} 
+         startInLoadingState={true}  
+         />
             </View> 
           }
+          <View>
+         <Text >Đăng bởi: {getUser.name}, {NiceTime(published_at)}, {total_like} Thích, {total_comment} Bình luận</Text>
+         </View> 
         </ScrollView>
         </View>
     );
   }
 }
+
+const win = Dimensions.get('window');
+const styles_image = StyleSheet.create({
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+        width: win.width,
+        height: win.height,
+    }
+});
+
+const styles = StyleSheet.create(
+  {
+   
+  WebViewStyle:
+  {
+     justifyContent: 'center',
+     alignItems: 'center',
+     flex:1,
+     marginTop: (Platform.OS) === 'ios' ? 20 : 0
+  },
+   
+  ActivityIndicatorStyle:{
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
+    
+  }
+  });
 
 export default Detail;
