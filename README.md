@@ -1,13 +1,9 @@
 "# reactnative-chatvlv2" 
 
-</br>
-![Optional Text](../master/src/images/home.png)
+![hoem page](../master/src/images/home.png)
 
-</br>
-![Optional Text](../master/src/images/Capture1.PNG)
+![menu](../master/src/images/Capture1.PNG)
 
-</br>
-![Optional Text](../master/src/images/Capture2.PNG)
+![login](../master/src/images/Capture2.PNG)
 
-</br>
-![Optional Text](../master/src/images/Capture4.PNG)
+![search](../master/src/images/Capture4.PNG)
